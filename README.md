@@ -8,12 +8,13 @@
 > 不过人工审阅过了，放心食用（
 
 ## 编译
-就一行命令，没了。
+就俩命令，没了。
 
 当然后续可能会有Makefile
 
 ```bash
-g++ -std=c++17 -O2 main.cpp acpi_power.cpp -o p4init
+mkdir build 
+g++ -std=c++17 -O2 main.cpp acpi_power.cpp -o build/p4init
 ```
 
 运行示例：

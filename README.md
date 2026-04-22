@@ -1,0 +1,23 @@
+# Power4Init
+一个简简单单的 C++ 项目，只是为了~~给 init 加点小佐料~~代替 systemd 或其他系统管理器的 init
+
+来实现在管理器之前做一些小准备再正式启动系统管理器。
+
+> [!WARNING]
+> 该项目部分代码使用了 GPT 5.3 Codex 生成。
+> 不过人工审阅过了，放心食用（
+
+## 编译
+就一行命令，没了。
+
+当然后续可能会有Makefile
+
+```bash
+g++ -std=c++17 -O2 main.cpp acpi_power.cpp -o p4init
+```
+
+运行示例：
+
+```bash
+./p4init --delay 2 --verbose
+```

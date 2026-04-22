@@ -5,10 +5,12 @@
 
 > [!NOTE]
 > 这群人是不是疯了，给init做启动器？该不会未来会有人搞出kernel甚至bootloader的启动器吧。
+>
 > 开发者的~~自嘲~~自言自语
 
 > [!WARNING]
 > 该项目部分代码使用了 GPT 5.3 Codex 生成。
+>
 > 不过人工审阅过了，放心食用（
 
 ## 编译
@@ -26,3 +28,8 @@ g++ -std=c++17 -O2 main.cpp acpi_power.cpp -o build/p4init
 ```bash
 ./p4init --delay 2 --verbose
 ```
+
+## TODO
+[ ] 实现非 systemd 的 init 支持
+[ ] 加入类似于 rc 的脚本执行
+[x] 想不出来画啥饼了（）

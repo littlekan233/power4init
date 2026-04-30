@@ -1,4 +1,5 @@
 #include "acpi_power.hpp"
+#include "shell_init.hpp"
 
 #include <errno.h>
 #include <fcntl.h>
@@ -134,23 +135,7 @@ static bool handle_enter_restart_request() {
     }
 
     log_info("Enter detected. Entering emergency shell...");
-    // 这段目前不打算加tab（
-    const char* kEmergencyShellCmd = R"CMD(
-bash -c '
-bash --init-file <(
-  cat << "EOF"
-alias reboot="/usr/bin/reboot -f"
-alias poweroff="/usr/bin/poweroff -f"
-echo "=== EMERGENCY SHELL ==="
-echo "Now you are in emergency shell."
-echo "Type \"exit\" to boot system again."
-echo "Type \"reboot\" to reboot your computer."
-echo "Type \"poweroff\" to power off your computer."
-EOF
-) -i
-'
-)CMD";
-    const int status = system(kEmergencyShellCmd);
+    const int status = system(siEmergencyShell);
     if (status == -1) {
         log_error("Can't open shell: %s", strerror(errno));
     } else if (WIFEXITED(status)) {
@@ -296,7 +281,7 @@ int main(int argc, char* argv[]) {
 
         log_error("Cannot start systemd! <ERRINFO> %d (%s)", errno, strerror(errno));
         log_error("Press " C_WHITE "Ctrl+Alt+Delete" C_RESET " to reboot.");
-	log_error("Press " C_WHITE "Power Button" C_RESET " to power off.");
+	    log_error("Press " C_WHITE "Power Button" C_RESET " to power off.");
         log_error("Press " C_WHITE "Enter" C_RESET " to enter emergency shell.");
         for (;;) {
             if (process_pending_events(acpi, 250)) {

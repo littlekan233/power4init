@@ -20,7 +20,7 @@
 
 ```bash
 mkdir build 
-g++ -std=c++17 -O2 main.cpp acpi_power.cpp -o build/p4init
+g++ -std=c++17 -O2 main.cpp acpi_power.cpp shell_init.cpp -o build/p4init
 ```
 
 运行示例：
@@ -31,5 +31,9 @@ g++ -std=c++17 -O2 main.cpp acpi_power.cpp -o build/p4init
 
 ## TODO
 [ ] 实现非 systemd 的 init 支持
+
 [ ] 加入类似于 rc 的脚本执行
+
+[ ] 如果可以的话还会有pseudo-systemd？
+
 [x] 想不出来画啥饼了（）
